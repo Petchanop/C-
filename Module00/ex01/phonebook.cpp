@@ -6,12 +6,12 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:08:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/02/28 16:15:26 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:18:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "phonebook.hpp"
 
-class PhoneBook{
-	Contact 
+void PhoneBook::ADD(std::string input) {
+	
 }
