@@ -6,17 +6,22 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:28:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/03 22:22:25 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:29:24 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie( void ) {}
+Zombie::Zombie( void ){}
 
-Zombie::Zombie( std::string name )
+Zombie::Zombie( std::string name)
 {
 	_name = name;
+}
+
+void	Zombie::setZombiename( std::string name )
+{
+	this->_name = name;
 }
 
 Zombie::~Zombie( void )
