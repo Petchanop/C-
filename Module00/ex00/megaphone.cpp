@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:58:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/02/28 15:27:24 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:59:37 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 {
 	if (argc == 1)
 	{
-		std :: cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << "\n";
+		std :: cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std:: endl;
 	}
 	else {
 		for (int i = 1; i < argc; i++){
