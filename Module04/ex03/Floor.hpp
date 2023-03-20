@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:41:16 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/20 00:34:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:19:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ class AMateria;
 class Floor {
 	private:
 		unsigned int idx;
-		AMateria *unEquipMateria[100];
 	public:
+		AMateria *unEquipMateria[100];
 		Floor( void );
 		~Floor( void );
 		void showFloorState( void );

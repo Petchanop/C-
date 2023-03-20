@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 17:25:16 by npiya-is          #+#    #+#              #
-#    Updated: 2023/03/20 00:05:43 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/03/20 18:05:56 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ SRCS= AMateria.cpp \
 	Ice.cpp \
 	Character.cpp \
 	IMateriaSource.cpp \
-	MateriaSource.cpp \
 	ICharacter.cpp \
+	MateriaSource.cpp \
 	floor.cpp \
 	main.cpp \
 

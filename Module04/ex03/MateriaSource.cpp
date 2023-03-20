@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:46:24 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/19 22:11:15 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:17:58 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ MateriaSource::MateriaSource( void ):_idx(0){
 	std::cout << "MateriaSource has been create." << std::endl;
 }
 
-MateriaSource::~MateriaSource( void ){}
+MateriaSource::~MateriaSource( void ){
+	for (unsigned int i = 0; i < _idx; i++){
+		std::cout << _materia[i]->getType() << " has bee destroyed." << std::endl;
+		delete _materia[i];
+	}
+}
 
 void MateriaSource::learnMateria( AMateria *materia){
 	if (materia)
@@ -42,5 +47,5 @@ AMateria* MateriaSource::createMateria(std::string const & type){
 		if (_materia[i] && !_materia[i]->getType().compare(compare))
 			return (_materia[i]->clone());
 	}
-	return (nullptr);
+	return (0);
 }

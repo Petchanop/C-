@@ -6,9 +6,10 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 18:16:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/18 18:17:10 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:07:19 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
 
+ICharacter::~ICharacter( void ){}

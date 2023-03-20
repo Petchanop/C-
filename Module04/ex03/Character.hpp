@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:54:23 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/20 00:47:01 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:33:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,17 @@ class Character :public ICharacter {
 	private:
 		std::string _name;
 		AMateria *_inventory[4];
-		static Floor floor;
 		unsigned int _idx;
 	public:
 		Character(std::string name);
+		Character(Character const & copy);
 		~Character();
 		std::string const & getName() const;
 		void equip(AMateria* m);
 		void unequip(int idx);
 		void use(int idx, ICharacter& target);
+		AMateria * getMateria(int idx);
+		static Floor floor;
 };
 
 #endif
