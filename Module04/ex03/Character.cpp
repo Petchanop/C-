@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:54:16 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/20 18:13:47 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:27:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ void	Character::unequip(int idx){
 		// floor.updateFloor(_inventory[idx]);
 		_inventory[idx] = nullptr;
 		// floor.showFloorState();
-		_idx--;
 	}
 	else {
-		std::cout << " has no equipment in inventory index." << std::endl;
+		std::cout << " has no equipment in inventory index " << idx << "." << std::endl;
 	}
 }
 
@@ -74,5 +73,5 @@ void Character::use(int idx, ICharacter & target){
 		_inventory[idx]->use(target);
 	}
 	else
-		std::cout << " has no equipment in inventory index." << std::endl;
+		std::cout << " has no equipment in inventory index" << idx << "." << std::endl;
 }

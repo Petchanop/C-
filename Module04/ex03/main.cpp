@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:11:57 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/20 18:18:25 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:32:46 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int main()
 	stage.showFloorState();
 	stage.updateFloor(me->getMateria(3));
 	me->unequip(3);
-	stage.showFloorState();
+	stage.updateFloor(me->getMateria(1));
 	me->unequip(1);
+	stage.showFloorState();
 	delete bob;
 	delete me;
 	delete src;
@@ -53,6 +54,5 @@ int main()
 	std::cout << me2->getMateria(0)->getType() << std::endl;
 	std::cout << me2->getMateria(1)->getType() << std::endl;
 	delete me2;
-	delete tmp;
 	return (0);
 }
