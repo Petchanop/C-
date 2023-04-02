@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 22:10:58 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/09 13:05:34 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/02 16:44:25 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ class Fixed {
 };
 
 std::ostream & operator <<( std::ostream & o, Fixed const & i );
+std::ostream & operator <<( std::ostream & o, bool i);
+
 
 #endif
