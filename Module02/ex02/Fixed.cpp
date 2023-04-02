@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 22:10:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/09 13:16:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/02 16:55:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ Fixed Fixed::max(Fixed const &a, Fixed const &b){
 		return (b);
 }
 
-Fixed Fixed::min(Fixed &a, Fixed &b){
+Fixed Fixed::min(Fixed const &a, Fixed const &b){
 	if (a.toFloat() < b.toFloat())
 		return (a);
 	else

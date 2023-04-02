@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 22:52:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/02 16:43:11 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/02 16:54:34 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int main( void ) {
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	std::cout << a >= b << std::endl;
+	if (a >= b)
+		std::cout << "a >= b" << std::endl;
+	else
+		std::cout << "a < b" << std::endl;
 	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::min( a, b ) << std::endl;
 	return 0;
 }
