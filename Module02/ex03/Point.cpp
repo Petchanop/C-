@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:36:50 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/09 14:26:32 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:47:19 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ float Area(Point const a, Point const b, Point const c){
 	float p1 = a.getX() * (b.getY() - c.getY());
 	float p2 = b.getX() * (c.getY() - a.getY());
 	float p3 = c.getX() * (a.getY() - b.getY());
-	return (p1 + p2 + p3) / 2;
+	return abs(p1 + p2 + p3) / 2.0;
 }
 
 bool bsp( Point const a, Point const b, Point const c, Point const point){
@@ -54,5 +54,12 @@ bool bsp( Point const a, Point const b, Point const c, Point const point){
 	float A1 = Area(point, b, c);
 	float A2 = Area(a, point, c);
 	float A3 = Area(a, b, point);
-	return (A == A1 + A2 + A3);
+	if (A == A1 + A2 + A3) {
+		std::cout << "Point " << point.getX() << "," << point.getY() << " is inside." << std::endl;
+		return true;
+	}
+	else {
+		std::cout << "Point " << point.getX() << "," << point.getY() << " is not inside." << std::endl;
+		return false;
+	}
 }
