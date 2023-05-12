@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:38:27 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/16 19:42:42 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:55:36 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog:public Animal, public Brain{
+class Dog:public Animal{
 	private:
 		Brain *_brain;
 	protected:
 		std::string __type;
 	public:
 		Dog( void );
-		Dog( Animal const & copy);
-		~Dog( void );
+		Dog( Dog const & copy);
+		virtual ~Dog( void );
 		Dog & operator = (Dog const & rhs);
 		std::string getType( void ) const ;
 		void makeSound( void )const ;
+		Brain * getBrain( void ) const;
 };
 
 #endif

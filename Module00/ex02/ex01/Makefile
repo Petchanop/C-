@@ -5,34 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/02 16:35:37 by npiya-is          #+#    #+#              #
-#    Updated: 2023/04/07 16:41:54 by npiya-is         ###   ########.fr        #
+#    Created: 2023/03/02 17:25:31 by npiya-is          #+#    #+#              #
+#    Updated: 2023/03/02 17:30:40 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=ex01
-
-CC=c++
-
-CFLAGS=-std=c++98 -Wall -Werror -Wextra
-
-RM= rm -rf
-
-SRCS=Fixed.cpp \
-	main.cpp
+CC= c++
+C_FLAGS= -std=c++98 -Wall -Wextra -Werror
+SRCS = phonebook.cpp \
+		contact.cpp
 
 OBJS=$(SRCS:%.cpp=%.o)
 
+NAME=phonebook
+
 all:$(NAME)
 
-$(NAME):$(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(C_FLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	rm -rf $(OBJS)
 
-fclean:clean
-	$(RM) $(NAME) $(NAME).dSYM
+fclean: clean
+	rm -rf $(NAME)
 
 re:fclean all
 

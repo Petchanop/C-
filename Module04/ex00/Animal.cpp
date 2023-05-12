@@ -6,13 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:20:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/13 19:49:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:36:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal( void ): __type("Animal"){
+Animal::Animal( void ):__type("Animal"){
 	std::cout << "Animal construct." << std::endl;
 }
 
@@ -20,13 +20,9 @@ Animal::~Animal( void ){
 	std::cout << "Animal deconstruct." << std::endl;
 }
 
-Animal::Animal(Animal const & copy):__type(copy.getType()){
-	std::cout << "Copy Animal." << std::endl;
-}
-
 Animal & Animal::operator = (Animal const & rhs){
 	Animal *lhs = new Animal(rhs);
-	std::cout << "Animal operator = is call." << std::endl;
+	std::cout << "operator = has been called." << std::endl;
 	return (*lhs);
 }
 

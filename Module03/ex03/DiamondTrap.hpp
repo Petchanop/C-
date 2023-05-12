@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:50:36 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/10 23:10:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:52:50 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap :virtual public ClapTrap, public ScavTrap , public FragTrap{
+class DiamondTrap :public ScavTrap , public FragTrap{
 	private:
 		std::string _name;
 	public:

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:51:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/13 21:20:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:06:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,12 @@
 
 int main()
 {
-	Brain *brain1 = new Brain();
-	brain1->setIdea("create Brain");
-	brain1->setIdea("create Brain2");
-	std::cout << brain1->getIdea()[0] << std::endl;
-	std::cout << brain1->getIdea()[1] << std::endl;
-	Brain *brain2 = new Brain(*brain1);
-	delete brain1; 
-	std::cout << brain2->getIdea()[0] << std::endl;
-	std::cout << brain2->getIdea()[1] << std::endl;
-	brain2->setIdea("create Brain3");
-	std::cout << brain2->getIdea()[2] << std::endl;
-	delete brain2;
 	Dog* dog1 = new Dog();
-	Dog* dogd = new Dog();
 	dog1->getBrain()->setIdea("I am 1st dog");
-	dogd->getBrain()->setIdea("I am 2nd dog");
 	std::cout << dog1->getBrain()->getIdea()[0] << std::endl;
-	Dog copyDog1 = *dogd;
-	delete dogd;
-	std::cout << "Copydog " << copyDog1.getBrain()->getIdea()[0] << std::endl;
-	Cat *catd = new Cat();
-	catd->getBrain()->setIdea("I amd 1st cat");
-	Cat copyCat = *catd;
-	delete catd;
-	std::cout << "CopyCat " << copyCat.getBrain()->getIdea()[0] << std::endl;
-	// delete copyDog1;
+	Dog *copyDog1 = new Dog(*(Dog*)dog1);
+	std::cout << "Copydog " << copyDog1->getBrain()->getIdea()[0] << std::endl;
+	delete copyDog1;
 	const Dog* dog2 = new Dog(*(Dog*)dog1);
 	const Dog* dog3 = new Dog(*(Dog*)dog1);
 	const Dog* dog4 = new Dog(*(Dog*)dog1);

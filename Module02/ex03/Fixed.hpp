@@ -35,10 +35,10 @@ class Fixed {
 		bool operator <= (Fixed const & r);
 		bool operator == (Fixed const & r);
 		bool operator != (Fixed const & r);
-		Fixed & operator + (Fixed const & r);
-		Fixed & operator - (Fixed const & r);
-		Fixed & operator * (Fixed const & r);
-		Fixed & operator / (Fixed const & r);
+		Fixed operator + (Fixed const & r);
+		Fixed operator - (Fixed const & r);
+		Fixed operator * (Fixed const & r);
+		Fixed operator / (Fixed const & r);
 		Fixed operator ++ (void);
 		Fixed operator ++ ( int );
 		Fixed operator -- (void);

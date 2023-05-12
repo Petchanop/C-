@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 22:10:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/07 15:04:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:52:50 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,23 @@ bool Fixed::operator < (Fixed const & r){ return this->_fixedPoint < r.getRawBit
 bool Fixed::operator <= (Fixed const & r){ return this->_fixedPoint <= r.getRawBits(); }
 bool Fixed::operator == (Fixed const & r){ return this->_fixedPoint == r.getRawBits(); }
 bool Fixed::operator != (Fixed const & r){ return this->_fixedPoint != r.getRawBits(); }
-Fixed & Fixed::operator + (Fixed const & r){ 
+Fixed Fixed::operator + (Fixed const & r){ 
 	this->_fixedPoint += r.getRawBits();
 	return (*this);
 }
-Fixed & Fixed::operator - (Fixed const & r){
+Fixed Fixed::operator - (Fixed const & r){
 	this->_fixedPoint -= r.getRawBits();
 	return (*this);
 }
-Fixed & Fixed::operator * (Fixed const & r){
+Fixed Fixed::operator * (Fixed const & r){
 	float times = this->toFloat() * r.toFloat();
-	Fixed *multiply = new Fixed(times);
-	return (*multiply);
+	// Fixed *multiply = new Fixed(times);
+	// return (*multiply);
+	return (Fixed(times));
 }
-Fixed & Fixed::operator / (Fixed const & r){
+Fixed Fixed::operator / (Fixed const & r){
 	float result = this->toFloat() / r.toFloat();
-	Fixed *divided = new Fixed(result);
-	return (*divided);
+	return (Fixed(result));
 }
 
 Fixed Fixed::operator ++ ( void ){

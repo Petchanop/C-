@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/12 20:21:14 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/13 19:21:18 by npiya-is         ###   ########.fr       */
+/*   Created: 2023/03/13 17:09:12 by npiya-is          #+#    #+#             */
+/*   Updated: 2023/03/13 17:14:15 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ANIMAL_HPP
-# define _ANIMAL_HPP
+#include "WrongAnimal.hpp"
 
-#include <iostream>
-#include "Brain.hpp"
+WrongAnimal::WrongAnimal( void ):__type("WrongAnimal"){}
 
-class Animal : public Brain {
-	protected:
-		std::string __type;
-	public:
-		Animal( void );
-		Animal(Animal const & copy);
-		virtual ~Animal( void );
-		Animal & operator = (Animal const & rhs);
-		virtual std::string getType( void ) const ;
-		virtual void makeSound( void ) const;
-};
+WrongAnimal::~WrongAnimal( void ){}
 
-#endif
+std::string WrongAnimal::getType( void ){
+	return (this->__type);
+}
+
+void WrongAnimal::makeSound( void ){
+	std::cout << "I'm WrongAnimal." << std::endl;
+}

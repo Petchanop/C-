@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 19:50:41 by npiya-is          #+#    #+#              #
-#    Updated: 2023/03/10 20:19:57 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/04/11 17:41:21 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ clean:
 	rm -rf $(OBJS)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME).dSYM
 
 re: fclean all 
 

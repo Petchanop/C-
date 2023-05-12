@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/12 20:21:14 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/13 19:21:18 by npiya-is         ###   ########.fr       */
+/*   Created: 2023/03/13 17:21:33 by npiya-is          #+#    #+#             */
+/*   Updated: 2023/03/17 01:46:55 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ANIMAL_HPP
-# define _ANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 #include <iostream>
-#include "Brain.hpp"
 
-class Animal : public Brain {
-	protected:
-		std::string __type;
+class Brain {
+	private:
+		unsigned int	_index;
 	public:
-		Animal( void );
-		Animal(Animal const & copy);
-		virtual ~Animal( void );
-		Animal & operator = (Animal const & rhs);
-		virtual std::string getType( void ) const ;
-		virtual void makeSound( void ) const;
+		std::string ideas[100];
+		Brain( void );
+		Brain( Brain const & copy);
+		~Brain( void );
+		Brain & operator = (Brain const &rhs);
+		void setIdea(std::string idea) ;
+		std::string *getIdea( void ) ;
 };
+
+// std::ostream & operator << (std::ostream &os, Brain const & brain);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:21:33 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/15 21:39:42 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:17:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 
 class Brain {
 	private:
-		static unsigned int	_index;
-	public:
+		unsigned int	_index;
 		std::string ideas[100];
+	public:
 		Brain( void );
 		Brain( Brain const & copy);
 		~Brain( void );
-		void setIdea(std::string idea);
-		std::string *getIdea( void );
+		Brain & operator = (Brain const &rhs);
+		void setIdea(std::string idea) ;
+		std::string *getIdea( void ) ;
 };
+
+// std::ostream & operator << (std::ostream &os, Brain const & brain);
 
 #endif

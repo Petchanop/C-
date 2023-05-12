@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:28:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/13 23:15:08 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:54:54 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@
 #include "Animal.hpp"
 #include "Brain.hpp" 
 
-class Cat :public Animal, public Brain {
+class Cat :public Animal{
 	private:
 		Brain *_brain;
 	protected:
 		std::string __type;
 	public:
 		Cat( void );
-		Cat(Animal const & copy);
-		const Animal & operator = (Animal const & rhs);
-		~Cat( void );
+		Cat(Cat const & copy);
+		const Cat & operator = (Cat const & rhs);
+		virtual ~Cat( void );
 		std::string getType( void ) const ;
 		void makeSound ( void ) const;
+		Brain * getBrain( void ) const;
 };
 
 #endif

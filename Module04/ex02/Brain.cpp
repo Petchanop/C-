@@ -6,15 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:45:30 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/13 19:41:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/03/17 01:57:33 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
-Brain::Brain( void ):_index(0){
-	std::cout << "Brain construct." << std::endl;
-}
+Brain::Brain( void ):_index(0){}
 
 Brain::Brain( Brain const & copy )
 {
@@ -25,9 +23,7 @@ Brain::Brain( Brain const & copy )
 	}
 }
 
-Brain::~Brain( void ){
-	std::cout << "Brain deconstruct." << std::endl;
-}
+Brain::~Brain( void ){}
 
 void Brain::setIdea(std::string idea) {
 	if (_index == 100)
