@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:18:03 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/25 23:50:50 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:37:35 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define AFORM_HPP
 
 #include <iostream>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class AForm {
 	private:
@@ -22,12 +25,40 @@ class AForm {
 		const int		_gradetosign;
 		const int		_gradetoexc;
 	public:
-		AForm & operator = (Form const & rhs);
+		AForm( void );
+		AForm(std::string name, int sign, int exe);
+		virtual ~AForm( void ) = 0;
+		AForm & operator = (AForm const & rhs);
 		std::string getName() const;
 		int getRequiredGrade() const;
 		int getRequiredExecuteGrade() const;
+		int getSignStatus() ;
 		void beSigned(const Bureaucrat &b);
-
+		virtual void execute(Bureaucrat const & executor) const = 0;
+		class GradeTooLowException: public std::exception {
+			public:
+				virtual const char * what() const throw() {
+					return "Grade Too low.";
+				}
+		} GradeToLow;
+		class GradeTooHighException: public std::exception {
+			public:
+				virtual const char * what() const throw() {
+					return "Grade Too high.";
+				}
+		} GradeToHigh;
+		class GradeNotValidException: public std::exception {
+			public: 
+				virtual const char * what() const throw() {
+					return "Grade not valid.";
+				}
+		} GradeNotValid;
+		class FormNotSignException: public std::exception {
+			public:
+				virtual const char * what() const throw() {
+					return "Form not signe.";
+				}
+		} FormNotSign;
 };
 
 #endif
