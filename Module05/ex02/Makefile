@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/22 21:08:25 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/25 22:13:16 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/26 16:13:11 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ CXX= c++
 CPPFLAGS= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 SRCS= Bureaucrat.cpp \
-	Form.cpp \
+	AForm.cpp \
+	ShrubberyCreation.cpp \
+	RobotomyRequestForm.cpp \
+	PresidentialPardonForm.cpp \
 	main.cpp \
 
 OBJS=$(SRCS:%.cpp=%.o)

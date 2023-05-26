@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:24:00 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/26 15:36:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:54:09 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 	std::ofstream file;
 	try
 	{
-		if (this->getSignStatus()){
+		if (this->getSignStatus() && executor.getGrade() < this->getRequiredExecuteGrade()){
 			file.open(this->_target + "_shrubbery");
 			file << "		# #### ####" << std::endl;
 			file << " 	 ### \/#|### |/####" << std::endl;

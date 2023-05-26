@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:17:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/26 15:37:27 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:54:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int AForm::getRequiredExecuteGrade() const {
 	return this->_gradetoexc;
 }
 
-int AForm::getSignStatus() {
+int AForm::getSignStatus() const {
 	if (this->_signed)
 		return (1);
 	return 0;

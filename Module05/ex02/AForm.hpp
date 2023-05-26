@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:18:03 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/26 15:37:35 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:54:38 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class AForm {
 		std::string getName() const;
 		int getRequiredGrade() const;
 		int getRequiredExecuteGrade() const;
-		int getSignStatus() ;
+		int getSignStatus() const ;
 		void beSigned(const Bureaucrat &b);
 		virtual void execute(Bureaucrat const & executor) const = 0;
 		class GradeTooLowException: public std::exception {
