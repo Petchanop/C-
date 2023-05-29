@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:58:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 13:53:45 by npiya-is         ###   ########.fr       */
+/*   Created: 2023/05/28 13:05:24 by npiya-is          #+#    #+#             */
+/*   Updated: 2023/05/28 23:12:22 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
-#include "AForm.hpp"
+#include "Form.hpp"
 
-class RobotomyRequestForm : public AForm {
+class PresidentialPardonForm: public Form {
 	private:
 		std::string		_target;
 	public:
-		RobotomyRequestForm(std::string target);
-		~RobotomyRequestForm();
-		void execute(Bureaucrat const & executor) const;
+		PresidentialPardonForm(std::string target);
+		~PresidentialPardonForm();
+		void execute(Bureaucrat const & executor) const ;
 };
 
 #endif

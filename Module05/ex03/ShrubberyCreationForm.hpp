@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:58:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 13:53:45 by npiya-is         ###   ########.fr       */
+/*   Created: 2023/05/26 00:19:26 by npiya-is          #+#    #+#             */
+/*   Updated: 2023/05/28 23:13:47 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
-#include "AForm.hpp"
+#include "Form.hpp"
+#include <fstream>
 
-class RobotomyRequestForm : public AForm {
+class ShrubberyCreationForm: public Form {
 	private:
-		std::string		_target;
+		std::string 	_target;
 	public:
-		RobotomyRequestForm(std::string target);
-		~RobotomyRequestForm();
+		ShrubberyCreationForm(std::string target);
+		~ShrubberyCreationForm( void );
 		void execute(Bureaucrat const & executor) const;
 };
 

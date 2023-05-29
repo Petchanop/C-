@@ -6,11 +6,11 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/22 21:08:25 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/28 14:01:27 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/29 14:52:18 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= ex02
+NAME= ex03
 
 CXX= c++
 
@@ -22,6 +22,7 @@ SRCS= Bureaucrat.cpp \
 	ShrubberyCreationForm.cpp \
 	RobotomyRequestForm.cpp \
 	PresidentialPardonForm.cpp \
+	Intern.cpp \
 	main.cpp \
 
 OBJS=$(SRCS:%.cpp=%.o)
