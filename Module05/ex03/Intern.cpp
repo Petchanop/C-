@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:28:04 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 15:05:39 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:19:41 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Intern & Intern::operator=(Intern const &rhs){
 Intern::~Intern(){}
 
 unsigned int Intern::SearchForm(std::string const & name) const {
-	unsigned int index = 0;
+	unsigned int index = -1;
 	std::string form[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
 	for (unsigned int i = 0; i < sizeof(form) / sizeof(std::string); i++){
 		if (form[i].compare(name) == 0){
@@ -50,6 +50,8 @@ Form *Intern::makeForm(std::string name, std::string target) {
 			return (new PresidentialPardonForm(target));
 		case (ShrubberyCreation):
 			return (new ShrubberyCreationForm(target));
+		default:
+			break;
 	}
 	return (NULL);
 }

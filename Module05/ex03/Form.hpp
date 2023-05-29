@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:18:43 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 15:12:55 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:21:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Form {
 		Form(std::string name, int sign, int exe);
 		Form(Form const &copy);
 		Form & operator = (Form const & rhs);
-		~Form( void );
+		virtual ~Form( void );
 		std::string getName() const;
 		int getRequiredGrade() const;
 		int getRequiredExecuteGrade() const;
