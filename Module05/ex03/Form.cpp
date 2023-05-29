@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:29:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 16:22:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:54:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Form::~Form( void ){}
 void Form::beSigned(const Bureaucrat &b){
 	try
 	{
-		if (b.checkValidGrade() > 0 && b.getGrade() < this->_gradetosign){
+		if (b.checkValidGrade() > 0 && b.getGrade() <= this->_gradetosign){
 			this->_signed = true;
 			std::cout << b.getName() << " can sign " << this->getName() << " Form." << std::endl;
 		}

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:57:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 16:23:50 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:54:40 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int main(void)
 {
 	Bureaucrat earth("earth");
 	Bureaucrat Nnew("N'new");
-	earth.setGrade(-1);
+	earth.setGrade(5);
 	Nnew.setGrade(25);
-	std::cout << "Test" << std::endl;
+	std::cout << "Test << operator" << std::endl;
 	std::cout << earth;
 	std::cout << Nnew;
 
@@ -39,7 +39,7 @@ int main(void)
 
 	// std::cout << Niinoi.SearchForm("robotomy request") << std::endl;
 
-	form1 = Niinoi.makeForm("robotoy request", "Earth");
+	form1 = Niinoi.makeForm("robotomy request", "Earth");
 	form2 = Niinoi.makeForm("presidential pardon", "Pound");	
 
 	if (form1 != NULL && form2 != NULL){
