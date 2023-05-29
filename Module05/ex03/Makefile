@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/22 21:08:25 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/29 14:52:18 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/29 16:29:51 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME= ex03
 CXX= c++
 
 CPPFLAGS= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+
+CPPLEAKS= -Wall -Wextra -Werror -std=c++98 
 
 SRCS= Bureaucrat.cpp \
 	AForm.cpp \
@@ -31,6 +33,9 @@ all:$(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+leaks: $(SRCS)
+	$(CXX) $(CPPLEAKS) $(SRCS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS) $(NAME).dSYM
