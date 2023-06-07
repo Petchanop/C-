@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:46:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/31 17:02:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:18:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,16 @@ void ScalarConverter::handleLiterals(std::string type){
 			std::cout << "int: " << "impossible" << std::endl;
 			std::cout << "float: " << "inff" << std::endl;
 			std::cout << "double: " << "inff" << std::endl;
+		}else if (!trimString.compare("-inf")){
+			std::cout << "char: " << "impossible" << std::endl;
+			std::cout << "int: " << "impossible" << std::endl;
+			std::cout << "float: " << "-inf" << std::endl;
+			std::cout << "double: " << "-inf" << std::endl;
+		} else if (!trimString.compare("-inff")){
+			std::cout << "char: " << "impossible" << std::endl;
+			std::cout << "int: " << "impossible" << std::endl;
+			std::cout << "float: " << "-inff" << std::endl;
+			std::cout << "double: " << "-inff" << std::endl;
 		}
 	}
 }
