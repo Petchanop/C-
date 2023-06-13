@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:57:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 14:04:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:01:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,16 @@ int main(void)
 	form1.beSigned(Nnew);
 	form2.beSigned(Nnew);
 
+	std::cout << "Test execute" << std::endl;
 	form1.execute(earth);
 	form1.execute(Nnew);
 	form2.execute(Nnew);
+
+	std::cout << "Test executeForm" << std::endl;
+	earth.executeForm(form1);
+	Nnew.executeForm(form1);
+	earth.executeForm(form2);
+	Nnew.executeForm(form2);
 	// std::cout << "Test signForm" << std::endl;
 	// earth.signForm(form1);
 	// Nnew.signForm(form2);

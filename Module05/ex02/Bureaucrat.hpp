@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:14:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 13:46:03 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:59:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 #include <iostream>
 #include <exception>
+#include "AForm.hpp"
 #include "Form.hpp"
 
 class Form;
+class AForm;
 
 class Bureaucrat {
 	public:
@@ -33,7 +35,7 @@ class Bureaucrat {
 		void DecreaseGrade(int num);
 		int checkValidGrade( void ) const;
 		void signForm( Form &f );
-		void executeForm(Form const &form);
+		void executeForm(AForm const &form);
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char * what() const throw(){
@@ -47,7 +49,7 @@ class Bureaucrat {
 				}
 		} GradeTooLow;
 		class GradeNotValidException: public std::exception {
-			public: 
+			public:
 				virtual const char * what() const throw() {
 					return "Grade not valid.";
 				}

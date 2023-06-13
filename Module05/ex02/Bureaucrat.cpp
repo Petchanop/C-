@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:14:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 13:50:31 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:59:17 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy){
 	*this = copy;
 }
 
-Bureaucrat & Bureaucrat::operator =(const Bureaucrat &rhs) { 
+Bureaucrat & Bureaucrat::operator =(const Bureaucrat &rhs) {
 	if (this != &rhs){
 		const_cast<std::string&>(this->_name) = rhs.getName();
 		this->_grade = rhs.getGrade();
@@ -108,7 +108,7 @@ void Bureaucrat::DecreaseGrade(int num){
 int Bureaucrat::checkValidGrade( void ) const {
 	if (this->_grade >= this->highest && this->_grade <= this->lowest)
 		return 1;
-	else if (this->_grade < this->highest) 
+	else if (this->_grade < this->highest)
 		return 0;
 	else
 		return -1;
@@ -130,10 +130,10 @@ void Bureaucrat::signForm(Form &f){
 	catch(const std::exception& e)
 	{
 		std::cout << this->getName() << " couldn't sign " << f.getName() << " form because " << e.what() << std::endl;
-	}	
+	}
 }
 
-void Bureaucrat::executeForm(Form const &form) {
+void Bureaucrat::executeForm(AForm const &form) {
 	try
 	{
 		if (this->checkValidGrade() > 0 && this->getGrade() <= form.getRequiredExecuteGrade())
@@ -148,5 +148,5 @@ void Bureaucrat::executeForm(Form const &form) {
 	catch(const std::exception& e)
 	{
 		std::cout << this->getName() << " couldn't execute " << form.getName() << " form because " << e.what() << std::endl;
-	}		
+	}
 }
