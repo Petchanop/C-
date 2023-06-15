@@ -6,35 +6,45 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 21:10:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/14 21:24:25 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/15 23:57:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
+#ifndef ARRAY_TPP
+# define ARRAY_TPP
 
-Array::Array(){}
+#include "Array.h"
 
-Array::Array(unsigned int n):_len(n){
-	new Array[n];
+template<class T>
+Array<T>::Array():element(0),_len(0){}
+
+template<class T>
+Array<T>::Array(unsigned int n):_len(n){
+	element = new T[n];
+	for (unsigned int i = 0; i < n; i++){
+		element[i] = T();
+	}
 }
 
-Array::Array(Array &copy){
+template<class T>
+Array<T>::~Array(){
+	delete[] element;
+}
+
+template<class T>
+Array<T>::Array(Array &copy){
+	_len = copy.size();
+	element = new T[_len];
 	for (int i = 0; i < copy.size; i++){
 		this->element[i] = copy[i];
 	}
 }
 
-Array & operator=(Array const &rhs){
-	for (int i = 0; i < rhs.size; i++){
-		this->element[i] = rhs[i];
-	}
-	return *this;
-}
-
-T & operator[](int index){
+template<class T>
+T & Array<T>::operator[](int index) const{
 	try
 	{
-		if (index < _len && index >= 0)
+		if ((size_t)index < _len && index >= 0)
 			return element[index];
 		else
 			throw(IndexOutofBound);
@@ -43,8 +53,12 @@ T & operator[](int index){
 	{
 		std::cerr << e.what() << '\n';
 	}
+	exit(EXIT_FAILURE);
 }
 
-size_t	Array::size(){
-	return _len;
+template<class T>
+size_t Array<T>::size(){
+	return (_len);
 }
+
+#endif
