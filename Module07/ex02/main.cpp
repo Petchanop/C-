@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:44:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/15 23:55:12 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:26:36 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ int main(void){
 	for (size_t i = 0; i < stringArray.size(); i++){
 		std::cout << "string array index " << i << " is " << stringArray[i] << std::endl;
 	}
+
+	std::cout << "Test copy constructor.\n";
+
+	Array<std::string>Copy(stringArray);
+
+	std::cout << "Change stringArray[0] from ""\test\"\" to  not the same\n";
+	stringArray[0] = "not the same.";
+
+	for (size_t i = 0; i < Copy.size(); i++){
+		std::cout << "Copy array index " << i << " is " << Copy[i] << std::endl;
+	}
+
+	std::cout << stringArray[0] << std::endl;
 
 	std::cout << "Create empty array.\n";
 	Array<std::string>Outofbound;

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 21:10:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/15 23:57:42 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:23:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ template<class T>
 Array<T>::Array(Array &copy){
 	_len = copy.size();
 	element = new T[_len];
-	for (int i = 0; i < copy.size; i++){
+	for (unsigned int i = 0; i < copy.size(); i++){
 		this->element[i] = copy[i];
 	}
 }
