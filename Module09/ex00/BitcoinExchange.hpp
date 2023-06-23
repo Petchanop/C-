@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:20:41 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/22 15:31:24 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:34:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,27 @@
 
 class BitcoinExchange {
 	private:
-		std::unordered_map<std::string, int> _dataValue;
+		std::unordered_multimap<std::string, float> _dataBase;
+		std::unordered_multimap<std::string, float> _inputData;
 	public:
 		BitcoinExchange();
 		~BitcoinExchange();
 		void readInput(std::string filename);
 		void readDatabase(std::string data);
 		void calculatePrice();
-		bool checkValidData(std::string line, char separator);
+		bool checkValidData(std::unordered_multimap<std::string, float> container, std::string line, char separator);
 		class dataNotValidException : public std::exception {
 			public:
 			virtual const char * what() const throw(){
 				return "Data format must be year-month-day and Price must be float or a positive integer between 0 and 1000.";
 			}
 		} dataNotValid;
+		class dataNotPositiveException : public std::exception {
+			public:
+			virtual const char * what() const throw(){
+				return "Error: not a positive number.";
+			}
+		} dataNotPositive;
 };
 
 #endif
