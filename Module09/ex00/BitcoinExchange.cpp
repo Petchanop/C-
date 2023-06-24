@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:23:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/23 20:22:29 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/25 00:02:19 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ void BitcoinExchange::readInput(std::string filename){
 		while (getline(file, line))
 		{
 			checkValidData(_inputData, line, '|');
+			//  && checkValidPrice(value)
 			this->calculatePrice();
 		}
 		file.close();
 	}
 }
 
-static unsigned int getDay(int year, int month){
+static int getDay(int year, int month){
 	if (month == 2) {
 		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
 			return 29;
@@ -64,7 +65,7 @@ static bool checkValidDate(std::string key){
 			if (key[i] == '-' && track)
 				Day = std::stoi(key.substr(i + 1));
 		}
-		unsigned int dayInMonth = getDay(Year, Month);
+		int dayInMonth = getDay(Year, Month);
 		if (Day > dayInMonth || Day < 0)
 			return false;
 		return true;
@@ -75,43 +76,50 @@ static bool checkValidDate(std::string key){
 static bool checkValidPrice(std::string value){
 	if (!value.empty()){
 		for (unsigned int i = 0; i < value.length(); i++){
-			if (value[i] < '0' || value[i] > '9'){
+			if ((value[i] < '0' || value[i] > '9') && (value[i] != '.')){
 				return false;
 			}
 		}
-		float val = std::stof(value);
-		if (val >= 0 && val <= 1000)
-			return true;
 	}
-	else {
-		return false;
-	}
+	return true;
 }
 
-bool BitcoinExchange::checkValidData(std::unordered_multimap<std::string,float> container, std::string line, char separator){
+bool BitcoinExchange::checkValidData(std::unordered_multimap<std::string,float> &container, std::string line, char separator){
 	std::string key;
 	std::string value;
 
 	for (size_t i = 0; i < line.length(); i++){
 		if (line[i] == separator){
 			key = line.substr(0, i);
-			value = line.substr(i, line.length());
+			value = line.substr(i+1, line.length());
 			break ;
 		}
 	}
 	try
 	{
-		if (checkValidDate(key) && checkValidPrice(value)){
-			container.insert({key, std::stof(value)});
+		std::string errorMsg;
+		if (checkValidDate(key)){
+			container.insert(std::pair<std::string, float>(key, std::stof(value)));
 			return true;
+		} else if (!checkValidDate(key)) {
+			errorMsg = "Error: bad input => ";
+			errorMsg.append(key);
+			char * badinput = &errorMsg[0];
+			throw dataNotValidException(badinput);
+		} else if (!checkValidPrice(value)) {
+			if (std::stof(value) < 0)
+				errorMsg = "Error: not a positive number.";
+			else
+				errorMsg = "Error: too large a number.";
+			char *valueError = &errorMsg[0];
+			throw dataNotValidException(valueError);
 		}
-		throw dataNotValid;
 	}
 	catch(std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
-		return false;
 	}
+	return false;
 }
 
 void BitcoinExchange::readDatabase(std::string data){
@@ -128,12 +136,14 @@ void BitcoinExchange::readDatabase(std::string data){
 }
 
 void BitcoinExchange::calculatePrice(){
-	for (std::unordered_multimap<std::string, float>::iterator data = _inputData.begin();
-		data != _inputData.end(); data++){
-		for (std::unordered_multimap<std::string, float>::iterator input = _dataBase.begin();
-		input != _dataBase.end(); input++){
-			if ((*data).first == (*input).first){
-				std::cout << (*data).first << " << " << (*input).second << " = " << (*data).second * (*input).second << std::endl;
+	for (std::unordered_multimap<std::string, float>::iterator input = _inputData.begin();
+		input != _inputData.end(); input++){
+		for (std::unordered_multimap<std::string, float>::iterator data = _dataBase.begin();
+			data != _dataBase.end(); data++){
+			if ((*input).second < 0 || (*input).second > 1000)
+				std::cout << "Error: too large a number.\n";
+			else if (!(*data).first.compare((*input).first)){
+				std::cout << (*input).first << " => " << int((*input).second) << " = " << (*data).second * (*input).second << std::endl;
 			}
 		}
 	}
