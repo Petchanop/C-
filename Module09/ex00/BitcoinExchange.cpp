@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:23:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/25 00:02:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:21:50 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void BitcoinExchange::readInput(std::string filename){
 	if (file.is_open()){
 		while (getline(file, line))
 		{
-			checkValidData(_inputData, line, '|');
-			//  && checkValidPrice(value)
-			this->calculatePrice();
+			if (checkValidData(_inputData, line, '|'))
+				this->calculatePrice();
 		}
 		file.close();
 	}
@@ -76,43 +75,56 @@ static bool checkValidDate(std::string key){
 static bool checkValidPrice(std::string value){
 	if (!value.empty()){
 		for (unsigned int i = 0; i < value.length(); i++){
-			if ((value[i] < '0' || value[i] > '9') && (value[i] != '.')){
-				return false;
+			if (value[i] == '.')
+				i++;
+			if (value[i] != ' '){
+				if (value[i] < '0' || value[i] > '9'){
+					return false;
+				}
 			}
 		}
+		return true;
 	}
-	return true;
+	return false;
 }
 
-bool BitcoinExchange::checkValidData(std::unordered_multimap<std::string,float> &container, std::string line, char separator){
+bool BitcoinExchange::checkValidData(std::multimap<std::string,float> &container, std::string line, char separator){
 	std::string key;
 	std::string value;
-
-	for (size_t i = 0; i < line.length(); i++){
+	size_t i;
+	for (i = 0; i < line.length(); i++){
 		if (line[i] == separator){
 			key = line.substr(0, i);
-			value = line.substr(i+1, line.length());
+			i++;
+			while (line[i] == ' ' && line[i] != '\0')
+				i++;
+			value = line.substr(i, line.length());
 			break ;
 		}
+	}
+	if (line[i] == '\0') {
+			key = line.substr(0, i);
 	}
 	try
 	{
 		std::string errorMsg;
-		if (checkValidDate(key)){
-			container.insert(std::pair<std::string, float>(key, std::stof(value)));
-			return true;
-		} else if (!checkValidDate(key)) {
+		if (!checkValidDate(key)) {
 			errorMsg = "Error: bad input => ";
 			errorMsg.append(key);
 			char * badinput = &errorMsg[0];
 			throw dataNotValidException(badinput);
-		} else if (!checkValidPrice(value)) {
-			if (std::stof(value) < 0)
+		}
+		else if (!checkValidPrice(value)) {
+			if (!isdigit(value[0]) && value[0] != '-')
+				return false;
+			else if (std::stof(value) < 0)
 				errorMsg = "Error: not a positive number.";
-			else
-				errorMsg = "Error: too large a number.";
 			char *valueError = &errorMsg[0];
 			throw dataNotValidException(valueError);
+		}
+		else if (checkValidDate(key)){
+			container.insert(std::pair<std::string, float>(key, std::stof(value)));
+			return true;
 		}
 	}
 	catch(std::exception &e)
@@ -136,15 +148,21 @@ void BitcoinExchange::readDatabase(std::string data){
 }
 
 void BitcoinExchange::calculatePrice(){
-	for (std::unordered_multimap<std::string, float>::iterator input = _inputData.begin();
-		input != _inputData.end(); input++){
-		for (std::unordered_multimap<std::string, float>::iterator data = _dataBase.begin();
-			data != _dataBase.end(); data++){
-			if ((*input).second < 0 || (*input).second > 1000)
-				std::cout << "Error: too large a number.\n";
-			else if (!(*data).first.compare((*input).first)){
-				std::cout << (*input).first << " => " << int((*input).second) << " = " << (*data).second * (*input).second << std::endl;
-			}
+	std::multimap<std::string, float>::reverse_iterator input = _inputData.rbegin();
+	std::multimap<std::string, float>::iterator data,itlow;
+	itlow = _dataBase.lower_bound((*input).first);
+	itlow--;
+	if (!_inputData.empty())
+	{
+		if ((*input).second > 1000){
+			std::cerr << "Error: too large a number.\n";
+			return ;
+		}
+	}
+	for (data = _dataBase.begin(); data != _dataBase.end(); data++){
+		if ((*data).first.compare((*input).first) && itlow == data){
+			std::cout << (*input).first << "=> " << (*input).second << " = " << (*data).second * (*input).second << std::endl;
+			break;
 		}
 	}
 }
