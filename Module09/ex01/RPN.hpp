@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 21:28:21 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/26 00:03:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/26 00:37:25 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class RPN {
 		RPN();
 		~RPN();
 		int getResult();
+		size_t getSize();
 		void addStack(std::string num);
 		void InvertedPolishCalculation(char token);
 };

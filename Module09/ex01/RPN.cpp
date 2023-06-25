@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 21:52:48 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/26 00:17:52 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:35:21 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,24 @@ void RPN::InvertedPolishCalculation(char token){
 	this->stack.pop();
 	switch (token) {
 		case '+':
-			this->stack.push(num2 + num1);
+			this->stack.push(num1 + num2);
 			break ;
 		case '-':
-			this->stack.push(num2 - num1);
+			this->stack.push(num1 - num2);
 			break ;
 		case '/':
-			this->stack.push(num2 / num1);
+			this->stack.push(num1 / num2);
 			break ;
 		case '*':
-			this->stack.push(num2 * num1);
+			this->stack.push(num1 * num2);
 			break ;
 	}
 }
 
 int RPN::getResult(){
 	return this->stack.top();
+}
+
+size_t RPN::getSize(){
+	return this->stack.size();
 }
