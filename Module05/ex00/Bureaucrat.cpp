@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:14:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 13:48:35 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:33:57 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ void Bureaucrat::DecreaseGrade(int num){
 	}
 }
 
-int Bureaucrat::checkValidGrade( void ){
+int Bureaucrat::checkValidGrade( void ) const{
 	if (this->_grade >= this->highest && this->_grade <= this->lowest)
 		return 1;
-	else if (this->_grade < this->highest)  
+	else if (this->_grade < this->highest)
 		return 0;
 	else
 		return -1;

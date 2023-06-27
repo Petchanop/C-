@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:57:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/13 19:10:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:23:36 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(void)
 	form1 = Niinoi.makeForm("robotomy request", "Earth");
 	form2 = Niinoi.makeForm("presidential pardon", "Pound");
 	form3 = Niinoi.makeForm("not found", "Muay");
-
+	std::cout << "form3 is " << form3 << std::endl;
 	if (form1 != NULL && form2 != NULL){
 		form1->beSigned(earth);
 		form1->execute(Nnew);

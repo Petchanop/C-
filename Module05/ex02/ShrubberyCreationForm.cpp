@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:24:00 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 14:11:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:45:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target):AForm("ShrubberyCreationForm", 145, 37){
 	this->_target = target;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & copy): AForm(copy) {
+	*this = copy;
+}
+
+ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs) {
+	if (this == &rhs)
+		return *this;
+	this->_target = rhs._target;
+	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm( void ){}
