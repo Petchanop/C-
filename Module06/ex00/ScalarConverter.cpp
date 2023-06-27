@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:46:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/31 17:18:39 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:32:01 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,30 @@ bool stringContains(std::string value, std::string word){
 
 void ScalarConverter::convert(std::string type){
 	std::string trimString = trimSpace(type);
+	std::stringstream strInt(trimString);
+	std::istringstream strFloat(trimString);
+	std::istringstream str(trimString);
+	int numInt;
+	float numFloat;
+	double numDouble;
+	strFloat >> numFloat;
+	strInt >> numInt;
+	str >> numDouble;
 	if (!trimString.empty() && (isdigit(trimString[0]) || (trimString[0] == '-' && isdigit(trimString[1])))){
-		if (std::stoi(trimString)){
-			if (isprint(std::stoi(trimString))){
-				std::cout << "char: " << "'" << char(std::stoi(trimString)) << "'" << std::endl;
-			} else if (!isprint(std::stoi(trimString))){
-				std::cout << "char: Non displayable" <<  std::endl;
-			}
-			if (std::stoi(trimString)){
-				std::cout << "int: " << std::stoi(trimString) << std::endl;
-			}
-			if (std::stof(trimString)){
-				if (findDecimalPoint(trimString))
-					std::cout << "float: " << std::stof(trimString) << "f" << std::endl;
-				else
-					std::cout << "float: " << std::stof(trimString) << ".0f" << std::endl;	
-			}
-			if (std::stod(trimString)){
-				if (findDecimalPoint(trimString))
-					std::cout << "double: " << std::stod(trimString) << std::endl;
-				else
-					std::cout << "double: " << std::stof(trimString) << ".0" << std::endl;
-			}
+		if (isprint(numInt)){
+			std::cout << "char: " << "'" << char(numInt) << "'" << std::endl;
+		} else if (!isprint(numInt)){
+			std::cout << "char: Non displayable" <<  std::endl;
 		}
-	} 
+		std::cout << "int: " << numInt << std::endl;
+		if (findDecimalPoint(trimString)){
+			std::cout << "float: " << numFloat << "f" << std::endl;
+			std::cout << "double: " << numDouble << std::endl;
+		} else {
+			std::cout << "float: " << numFloat << ".0f" << std::endl;
+			std::cout << "double: " << numDouble << ".0" << std::endl;
+		}
+	}
 }
 
 void ScalarConverter::handleLiterals(std::string type){
@@ -80,7 +80,7 @@ void ScalarConverter::handleLiterals(std::string type){
 			std::cout << "char: " << "impossible" << std::endl;
 			std::cout << "int: " << "impossible" << std::endl;
 			std::cout << "float: " << "nanf" << std::endl;
-			std::cout << "double: " << "nan" << std::endl;	
+			std::cout << "double: " << "nan" << std::endl;
 		} else if (!trimString.compare("inf")){
 			std::cout << "char: " << "impossible" << std::endl;
 			std::cout << "int: " << "impossible" << std::endl;
