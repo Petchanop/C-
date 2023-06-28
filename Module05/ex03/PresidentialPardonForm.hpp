@@ -6,16 +6,16 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:05:24 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/27 13:38:49 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:40:13 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class PresidentialPardonForm: public Form {
+class PresidentialPardonForm: public AForm {
 	private:
 		std::string		_target;
 	public:

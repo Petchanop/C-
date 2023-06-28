@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:14:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 13:50:31 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:35:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy){
 	*this = copy;
 }
 
-Bureaucrat & Bureaucrat::operator =(const Bureaucrat &rhs) { 
+Bureaucrat & Bureaucrat::operator =(const Bureaucrat &rhs) {
 	if (this != &rhs){
 		const_cast<std::string&>(this->_name) = rhs.getName();
 		this->_grade = rhs.getGrade();
@@ -43,22 +43,13 @@ std::ostream & operator <<(std::ostream &out, const Bureaucrat &c){
 Bureaucrat::~Bureaucrat(void){}
 
 void	Bureaucrat::setGrade(int grade){
-	try
-	{
-		this->_grade = grade;
-		if (this->checkValidGrade() > 0)
-			std::cout << *this;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
-		else
-			throw GradeTooLow;
-	}
-	catch (std::exception &e)
-	{
-		this->_grade = 0;
-		std::cout << "Grade for " << this->_name << " not valid." << e.what() << std::endl;
-		std::cout << "Please set grade between " << highest << " - " << lowest << "." << std::endl;
-	}
+	this->_grade = grade;
+	if (this->checkValidGrade() > 0)
+		std::cout << *this;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
+	else
+		throw GradeTooLow;
 }
 
 std::string Bureaucrat::getName( void ) const {
@@ -70,83 +61,53 @@ int		Bureaucrat::getGrade( void ) const {
 }
 
 void	Bureaucrat::IncreaseGrade(int num){
-	try
-	{
-		this->_grade -= num;
-		if (this->checkValidGrade() > 0)
-			std::cout << *this;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
-		else
-			throw GradeTooLow;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Grade not valid." << e.what() << std::endl;
-		this->_grade += num;
-	}
+	this->_grade -= num;
+	if (this->checkValidGrade() > 0)
+		std::cout << *this;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
+	else
+		throw GradeTooLow;
 }
 
 void Bureaucrat::DecreaseGrade(int num){
-	try
-	{
-		this->_grade += num;
-		if (this->checkValidGrade() > 0)
-			std::cout << *this;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
-		else
-			throw GradeTooLow;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Grade not valid." << e.what() << std::endl;
-		this->_grade -= num;
-	}
+	this->_grade += num;
+	if (this->checkValidGrade() > 0)
+		std::cout << *this;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
+	else
+		throw GradeTooLow;
 }
 
 int Bureaucrat::checkValidGrade( void ) const {
 	if (this->_grade >= this->highest && this->_grade <= this->lowest)
 		return 1;
-	else if (this->_grade < this->highest) 
+	else if (this->_grade < this->highest)
 		return 0;
 	else
 		return -1;
 }
 
-void Bureaucrat::signForm(Form &f){
-	try
+void Bureaucrat::signForm(AForm &f){
+	if (this->checkValidGrade() > 0 && this->getGrade() <= f.getRequiredGrade())
 	{
-		if (this->checkValidGrade() > 0 && this->getGrade() <= f.getRequiredGrade())
-		{
-			f.beSigned(*this);
-			std::cout << this->getName() << " signed " << f.getName() << std::endl;
-		}
-		else if (this->getGrade() > f.getRequiredGrade())
-			throw GradeTooLow;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
+		f.beSigned(*this);
+		std::cout << this->getName() << " signed " << f.getName() << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cout << this->getName() << " couldn't sign " << f.getName() << " form because " << e.what() << std::endl;
-	}	
+	else if (this->getGrade() > f.getRequiredGrade())
+		throw GradeTooLow;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
 }
 
-void Bureaucrat::executeForm(Form const &form) {
-	try
+void Bureaucrat::executeForm(AForm const &form) {
+	if (this->checkValidGrade() > 0 && this->getGrade() <= form.getRequiredExecuteGrade())
 	{
-		if (this->checkValidGrade() > 0 && this->getGrade() <= form.getRequiredExecuteGrade())
-		{
-			std::cout << this->getName() << " execute " << form.getName() << std::endl;
-		}
-		else if (this->getGrade() > form.getRequiredExecuteGrade())
-			throw GradeTooLow;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
+		std::cout << this->getName() << " execute " << form.getName() << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cout << this->getName() << " couldn't execute " << form.getName() << " form because " << e.what() << std::endl;
-	}		
+	else if (this->getGrade() > form.getRequiredExecuteGrade())
+		throw GradeTooLow;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
 }

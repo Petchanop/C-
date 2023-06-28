@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:18:43 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/25 16:29:04 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:00:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class Form {
 				}
 		} GradeToHigh;
 		class GradeNotValidException: public std::exception {
-			public: 
+			public:
 				virtual const char * what() const throw() {
 					return "Grade not valid.";
 				}

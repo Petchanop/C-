@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:57:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/25 22:10:37 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:46:58 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int main(void)
 {
 	Bureaucrat earth("earth");
 	Bureaucrat Nnew("N'new");
-	earth.setGrade(-1);
+	try {
+		earth.setGrade(-1);
+	} catch (std::exception &e) {
+		std::cout << earth.getName() << " " << e.what() << std::endl;
+	}
 	Nnew.setGrade(25);
 	std::cout << "Test" << std::endl;
 	std::cout << earth;
@@ -28,11 +32,22 @@ int main(void)
 
 	std::cout << "Test beSigned" << std::endl;
 
-	physics.beSigned(earth);
+	try
+	{
+		physics.beSigned(earth);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << earth.getName() << " can't sign " << physics.getName() << " Form." << std::endl;
+	}
 	socialSci.beSigned(Nnew);
 
 	std::cout << "Test signForm" << std::endl;
-	earth.signForm(socialSci);
+	try {
+		earth.signForm(socialSci);
+	} catch (std::exception &e) {
+		std::cout << earth.getName() << " couldn't sign " << socialSci.getName() << " form because " << e.what() << std::endl;
+	}
 	Nnew.signForm(socialSci);
 	std::cout << "Test = operator" << std::endl;
 	Bureaucrat earth2 = earth;

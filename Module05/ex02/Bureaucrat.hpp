@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:14:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/13 18:59:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:28:48 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Bureaucrat {
 		void IncreaseGrade(int num);
 		void DecreaseGrade(int num);
 		int checkValidGrade( void ) const;
-		void signForm( Form &f );
+		void signForm( AForm &f );
 		void executeForm(AForm const &form);
 		class GradeTooHighException : public std::exception {
 			public:

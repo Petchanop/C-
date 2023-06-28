@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:17:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/26 15:54:32 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:26:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,20 @@ AForm & AForm::operator =(const AForm &rhs){
 }
 
 void AForm::beSigned(const Bureaucrat &b){
-	try
-	{
-		if (b.checkValidGrade() > 0 && b.getGrade() < this->_gradetosign){
-			this->_signed = true;
-			std::cout << b.getName() << " can sign " << this->getName() << " Form." << std::endl;
-		}
-		else if (b.checkValidGrade() == 0)
-			throw GradeToHigh;
-		else
-			throw GradeToLow;
+	if (b.checkValidGrade() > 0 && b.getGrade() < this->_gradetosign){
+		this->_signed = true;
+		std::cout << b.getName() << " can sign " << this->getName() << " Form." << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cout << b.getName() << " can't sign " << this->getName() << " Form." << std::endl;	
-	}
+	else if (b.checkValidGrade() == 0)
+		throw GradeToHigh;
+	else
+		throw GradeToLow;
 }
 
 std::string AForm::getName() const {
 	return this->_name;
 }
-		
+
 int AForm::getRequiredGrade() const {
 	return this->_gradetosign;
 }

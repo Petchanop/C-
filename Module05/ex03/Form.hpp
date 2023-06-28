@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:18:43 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 16:21:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:11:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ class Form {
 		Form(std::string name, int sign, int exe);
 		Form(Form const &copy);
 		Form & operator = (Form const & rhs);
-		virtual ~Form( void );
+		~Form( void );
 		std::string getName() const;
 		int getRequiredGrade() const;
 		int getRequiredExecuteGrade() const;
 		void hasSigned();
-		int getSignStatus() const ;
 		void beSigned(const Bureaucrat &b);
-		virtual void execute(Bureaucrat const & executor) const = 0;
 		class GradeTooLowException: public std::exception {
 			public:
 				virtual const char * what() const throw() {
@@ -49,7 +47,7 @@ class Form {
 				}
 		} GradeToHigh;
 		class GradeNotValidException: public std::exception {
-			public: 
+			public:
 				virtual const char * what() const throw() {
 					return "Grade not valid.";
 				}

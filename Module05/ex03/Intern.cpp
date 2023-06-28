@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:28:04 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 16:19:41 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:49:56 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ unsigned int Intern::SearchForm(std::string const & name) const {
 			return (index);
 		}
 	}
-	std::cout << "Intern can't create " << name << std::endl;
+	std::cout << "Intern can't create " << name << " form." << std::endl;
 	return (index);
 }
 
-Form *Intern::makeForm(std::string name, std::string target) {
+AForm *Intern::makeForm(std::string name, std::string target) {
 	switch (SearchForm(name)) {
 		case (RobotomyRequest):
 			return (new RobotomyRequestForm(target));
@@ -53,5 +53,6 @@ Form *Intern::makeForm(std::string name, std::string target) {
 		default:
 			break;
 	}
+	throw FormNotExist;
 	return (NULL);
 }

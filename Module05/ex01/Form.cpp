@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:29:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/25 22:10:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:40:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,20 @@ Form & Form::operator =(const Form &rhs){
 Form::~Form( void ){}
 
 void Form::beSigned(const Bureaucrat &b){
-	try
-	{
-		if (b.checkValidGrade() > 0 && b.getGrade() < this->_gradetosign){
-			this->_signed = true;
-			std::cout << b.getName() << " can sign " << this->getName() << " Form." << std::endl;
-		}
-		else if (b.checkValidGrade() == 0)
-			throw GradeToHigh;
-		else
-			throw GradeToLow;
+	if (b.checkValidGrade() > 0 && b.getGrade() < this->_gradetosign){
+		this->_signed = true;
+		std::cout << b.getName() << " can sign " << this->getName() << " Form." << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cout << b.getName() << " can't sign " << this->getName() << " Form." << std::endl;	
-	}
+	else if (b.checkValidGrade() == 0)
+		throw GradeToHigh;
+	else
+		throw GradeToLow;
 }
 
 std::string Form::getName() const {
 	return this->_name;
 }
-		
+
 int Form::getRequiredGrade() const {
 	return this->_gradetosign;
 }
@@ -74,5 +67,5 @@ void	Form::hasSigned(void){
 	if (this->_signed)
 		std::cout << this->_name << " has been signed." << std::endl;
 	else
-		std::cout << this->_name << " has not been signed." << std::endl;	
+		std::cout << this->_name << " has not been signed." << std::endl;
 }

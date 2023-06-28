@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:23:04 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 14:43:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:49:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@ class Intern {
 		~Intern();
 		Intern & operator=(Intern const &rhs);
 		unsigned int SearchForm(std::string const & name) const;
-		Form *makeForm(std::string name, std::string target);
+		AForm *makeForm(std::string name, std::string target);
+		class FormNotExistexceptopm: public std::exception {
+			public:
+				virtual const char * what() const throw() {
+					return "Form not exist.\n";
+				}
+		} FormNotExist;
 };
 
 #endif

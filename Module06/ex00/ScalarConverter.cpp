@@ -6,11 +6,25 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:46:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/27 14:32:01 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:56:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter(){}
+
+ScalarConverter::ScalarConverter(ScalarConverter const & copy){
+	*this = copy;
+}
+
+ScalarConverter::~ScalarConverter(){}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs){
+	if (this != &rhs)
+		*this = rhs;
+	return *this;
+}
 
 std::string trimSpace(std::string str)
 {
@@ -22,19 +36,39 @@ std::string trimSpace(std::string str)
 	}
 	j = i;
 	while (i < int(str.length())){
-		if (str[i] < 33)
-			break;
+		if (str[i] < 33 || str[i] == 'f')
+		{
+			if (!(str[i] == 'f' && i == int(str.length()) - 1))
+				return (str);
+			else
+				break;
+		}
 		i++;
 	}
 	return (str.substr(j, i));
 }
 
 unsigned int findDecimalPoint(std::string value){
+	unsigned int dot = 0;
+	unsigned int isZero = 0;
 	for (unsigned int i = 0; i < value.length(); i++){
 		if (value[i] == '.')
-			return (i);
+			dot = i;
 	}
-	return (0);
+	for (unsigned int i = dot + 1; i < value.length(); i++){
+		if (value[i] == '0')
+			isZero = i;
+		else
+			break;
+	}
+	if (isZero == value.length() - 2 || isZero == value.length() - 1)
+	{
+		if (isZero == value.length() - 2 && value[value.length() - 1] == 'f')
+			return 0;
+		if (isZero == value.length() - 1)
+			return 0;
+	}
+	return (dot);
 }
 
 bool stringContains(std::string value, std::string word){
@@ -47,27 +81,34 @@ bool stringContains(std::string value, std::string word){
 
 void ScalarConverter::convert(std::string type){
 	std::string trimString = trimSpace(type);
-	std::stringstream strInt(trimString);
-	std::istringstream strFloat(trimString);
 	std::istringstream str(trimString);
-	int numInt;
-	float numFloat;
 	double numDouble;
-	strFloat >> numFloat;
-	strInt >> numInt;
 	str >> numDouble;
+	std::cout << numDouble << " this value shoulde equal " << type << std::endl;
 	if (!trimString.empty() && (isdigit(trimString[0]) || (trimString[0] == '-' && isdigit(trimString[1])))){
-		if (isprint(numInt)){
-			std::cout << "char: " << "'" << char(numInt) << "'" << std::endl;
-		} else if (!isprint(numInt)){
+		if (isprint(numDouble)){
+			std::cout << "char: " << "'" << static_cast<char>(numDouble) << "'" << std::endl;
+		} else if (!isprint(numDouble)){
 			std::cout << "char: Non displayable" <<  std::endl;
 		}
-		std::cout << "int: " << numInt << std::endl;
+		if (numDouble < std::numeric_limits<int>::min() || numDouble > std::numeric_limits<int>::max()) {
+			std::cout << "int: " << "impossible" << std::endl;
+		}
+		else {
+			std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
+		}
 		if (findDecimalPoint(trimString)){
-			std::cout << "float: " << numFloat << "f" << std::endl;
+			if (numDouble > std::numeric_limits<float>::min() && numDouble < std::numeric_limits<float>::max())
+				std::cout << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
+			else
+				std::cout << "float: " << static_cast<float>(numDouble) << std::endl;
 			std::cout << "double: " << numDouble << std::endl;
-		} else {
-			std::cout << "float: " << numFloat << ".0f" << std::endl;
+		}
+		else {
+			if (numDouble > std::numeric_limits<float>::min() && numDouble < std::numeric_limits<float>::max())
+				std::cout << "float: " << static_cast<float>(numDouble) << ".0f" << std::endl;
+			else
+				std::cout << "float: " << static_cast<float>(numDouble) << std::endl;
 			std::cout << "double: " << numDouble << ".0" << std::endl;
 		}
 	}

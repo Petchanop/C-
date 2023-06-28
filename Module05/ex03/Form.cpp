@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:29:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 16:54:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:01:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Form::~Form( void ){}
 void Form::beSigned(const Bureaucrat &b){
 	try
 	{
-		if (b.checkValidGrade() > 0 && b.getGrade() <= this->_gradetosign){
+		if (b.checkValidGrade() > 0 && b.getGrade() < this->_gradetosign){
 			this->_signed = true;
 			std::cout << b.getName() << " can sign " << this->getName() << " Form." << std::endl;
 		}
@@ -48,14 +48,14 @@ void Form::beSigned(const Bureaucrat &b){
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << b.getName() << " can't sign " << this->getName() << " Form." << std::endl;	
+		std::cout << b.getName() << " can't sign " << this->getName() << " Form." << std::endl;
 	}
 }
 
 std::string Form::getName() const {
 	return this->_name;
 }
-		
+
 int Form::getRequiredGrade() const {
 	return this->_gradetosign;
 }
@@ -74,11 +74,5 @@ void	Form::hasSigned(void){
 	if (this->_signed)
 		std::cout << this->_name << " has been signed." << std::endl;
 	else
-		std::cout << this->_name << " has not been signed." << std::endl;	
-}
-
-int Form::getSignStatus() const {
-	if (this->_signed)
-		return (1);
-	return 0;
+		std::cout << this->_name << " has not been signed." << std::endl;
 }

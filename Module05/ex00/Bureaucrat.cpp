@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:14:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/27 13:33:57 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:43:56 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,13 @@ std::ostream & operator <<(std::ostream &out, const Bureaucrat &c){
 Bureaucrat::~Bureaucrat(void){}
 
 void	Bureaucrat::setGrade(int grade){
-	try
-	{
-		this->_grade = grade;
-		if (this->checkValidGrade() > 0)
-			std::cout << *this;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
-		else
-			throw GradeTooLow;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Grade for " << this->_name << " not valid." << e.what() << std::endl;
-		std::cout << "Please set grade between " << highest << " - " << lowest << "." << std::endl;
-	}
+	this->_grade = grade;
+	if (this->checkValidGrade() > 0)
+		std::cout << *this;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
+	else
+		throw GradeTooLow;
 }
 
 std::string Bureaucrat::getName( void ) const {
@@ -68,39 +60,23 @@ int		Bureaucrat::getGrade( void ) const {
 }
 
 void	Bureaucrat::IncreaseGrade(int num){
-	try
-	{
-		this->_grade -= num;
-		if (this->checkValidGrade() > 0)
-			std::cout << *this;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
-		else
-			throw GradeTooLow;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Grade not valid." << e.what() << std::endl;
-		this->_grade += num;
-	}
+	this->_grade -= num;
+	if (this->checkValidGrade() > 0)
+		std::cout << *this;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
+	else
+		throw GradeTooLow;
 }
 
 void Bureaucrat::DecreaseGrade(int num){
-	try
-	{
-		this->_grade += num;
-		if (this->checkValidGrade() > 0)
-			std::cout << *this;
-		else if (this->checkValidGrade() == 0)
-			throw GradeTooHigh;
-		else
-			throw GradeTooLow;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Grade not valid." << e.what() << std::endl;
-		this->_grade -= num;
-	}
+	this->_grade += num;
+	if (this->checkValidGrade() > 0)
+		std::cout << *this;
+	else if (this->checkValidGrade() == 0)
+		throw GradeTooHigh;
+	else
+		throw GradeTooLow;
 }
 
 int Bureaucrat::checkValidGrade( void ) const{
