@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:28:04 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/28 15:49:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/29 00:08:06 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ AForm *Intern::makeForm(std::string name, std::string target) {
 		default:
 			break;
 	}
-	throw FormNotExist;
 	return (NULL);
 }
