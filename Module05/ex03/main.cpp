@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:57:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/28 15:52:44 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/29 00:05:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int main(void)
 	Intern Niinoi;
 	AForm *form1;
 	AForm *form2;
-	AForm *form3;
 
 	std::cout << "--------------------------------------------------------\n";
 	std::cout << "Test Intern" << std::endl;
@@ -38,6 +37,7 @@ int main(void)
 	form2 = Niinoi.makeForm("presidential pardon", "Pound");
 	try
 	{
+		AForm *form3;
 		form3 = Niinoi.makeForm("not found", "Muay");
 	}
 	catch (std::exception &e)
