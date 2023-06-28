@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:44:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/16 14:26:36 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:26:35 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ int main(void){
 
 	std::cout << "Create empty array.\n";
 	Array<std::string>Outofbound;
-	std::cout << "show size of array equal " << Outofbound.size() << std::endl;
-	std::cout << Outofbound[0] << std::endl;
+	try
+	{
+		std::cout << "show size of array equal " << Outofbound.size() << std::endl;
+		std::cout << Outofbound[0] << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
+
+

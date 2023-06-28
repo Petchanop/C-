@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 21:10:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/16 14:23:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:26:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,10 @@ Array<T>::Array(Array &copy){
 
 template<class T>
 T & Array<T>::operator[](int index) const{
-	try
-	{
-		if ((size_t)index < _len && index >= 0)
-			return element[index];
-		else
-			throw(IndexOutofBound);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	exit(EXIT_FAILURE);
+	if ((size_t)index < _len && index >= 0)
+		return element[index];
+	else
+		throw(IndexOutofBound);
 }
 
 template<class T>
