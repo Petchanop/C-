@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:19:26 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/27 13:45:27 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/29 00:03:35 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "AForm.hpp"
 #include <fstream>
+#include <cstring>
 
 class ShrubberyCreationForm: public AForm {
 	private:
