@@ -6,11 +6,12 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:44:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/30 15:51:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:50:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.h"
+#include <cstdlib>
 // #include <iostream>
 // #include <iterator>
 // #include <array>
