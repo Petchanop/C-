@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:05:00 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/03 17:57:34 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/04 03:00:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int main(int argc, char *argv[]){
 	if (argc > 1){
 		PmergeMe<std::vector<int> > bb;
-		bb.addInput(argc, argv);
-		for (std::vector<int>::iterator it = bb.getSequence().begin(); it != bb.getSequence().end(); it++) {
-			std::cout << *it << std::endl;
+		if (bb.addInput(argc, argv)){
+			bb.groupInput();
+			bb.sortPairInput();
 		}
 	}
 }
