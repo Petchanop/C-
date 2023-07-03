@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:05:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/17 01:17:54 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:04:45 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,16 @@
 class OccurrenceNotFoundException : public std::exception {
 	public:
 		virtual const char * what() const throw(){
-			return "Occurrence not found ";
+			return "Occurrence not found\n";
 	}
 };
 
 template<typename T>int easyfind(T first, int second) {
-	try
-	{
-		OccurrenceNotFoundException OccurrenceNotFound;
-		typename T::iterator it = std::find(first.begin(), first.end(), second);
-		if (it != first.end())
-			return int(*it);
-		throw OccurrenceNotFound;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what();
-		return second;
-	}
+	OccurrenceNotFoundException OccurrenceNotFound;
+	typename T::iterator it = std::find(first.begin(), first.end(), second);
+	if (it != first.end())
+		return int(*it);
+	throw OccurrenceNotFound;
 }
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:18:41 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/18 23:00:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:08:45 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <climits>
 
 class Span {
 	private:
