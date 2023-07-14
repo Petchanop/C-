@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:05:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/13 01:01:52 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:57:47 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ template <class T>
 class PmergeMe {
 	private:
 		T	_seq;
-		T	_remain;
 	public:
 		PmergeMe( void ){};
 		PmergeMe(PmergeMe const & copy){
@@ -49,9 +48,6 @@ class PmergeMe {
 		}
 		T getSequence() {
 			return this->_seq;
-		}
-		T getRemaining() {
-			return this->_remain;
 		}
 
 		bool addInput(int argc, char *argv[]){
@@ -87,122 +83,33 @@ class PmergeMe {
 			}
 		}
 
-		int	findPositionInsert(int num, int j, int end){
-			int k = j;
-			while (k < end){
-				if (num > _seq[k])
-					k++;
-				else
-					break ;
+		void	insertPartition(int start, int end){
+			for (int i = start; i <= end; i++){
+				int num = _seq[i];
+				int pre = i - 1;
+				while (pre >= start && _seq[pre] > num){
+					_seq[pre + 1] = _seq[pre];
+					pre--;
+				}
+				_seq[pre + 1] = num;
 			}
-			return k - 1;
 		}
 
-		void	partitionSwap(size_t start, size_t end){
-			unsigned int nend;
-			if (end == this->_seq.size())
-				nend = end;
-			else
-				nend = end + 1;
-			// this->printSort(start, nend, YEL, YEL, "Before Partition start\n");
-			// std::cout << start << " to " << (start + nend) / 2 << "\n";
-			for (unsigned int i = start; i != (start + nend) / 2; i++){
-				for (unsigned int j = start; j != (start + nend) / 2; j++){
-					if ( _seq[i] > _seq[j] && i < j){
-						//optimize use search to find consequence of j index which lower than i index
-						// std::cout << "before _seq[i]: " << i << "," << _seq[i] <<  " _seq[j]: " << j << ",\n";//<< _seq[j] << std::endl;
-						unsigned int l = i;
-						int num = _seq[i];
-						unsigned int k = this->findPositionInsert(num, j, (start + nend) / 2);
-						// std::cout << "sort at index :" << k << std::endl;
-						while (i < k){
-							int tmp1 = _seq[i + 1];
-							_seq[i + 1] = num;
-							_seq[i] = tmp1;
-							i++;
-						}
-						i = l;
-						j--;
-						// std::cout << "after _seq[i]: " << i << "," << _seq[i] << std::endl;
-					}
+		void mergePartition(int start, int nend){
+			int mid = start + (nend - start) / 2;
+			if (_seq[mid] <= _seq[mid + 1])
+				return ;
+			int i = start;
+			int j = mid + 1;
+			while (i <= mid && j <= nend){
+				if (_seq[i] <= _seq[j])
+					i++;
+				else {
+					std::rotate(_seq.begin() + i, _seq.begin() + j, _seq.begin() + j + 1);
+					i++;
+					mid++;
+					j++;
 				}
-			}
-			for (unsigned int i = (start + nend) / 2; i != nend; i++){
-				for (unsigned int j = (start + nend) / 2; j != nend; j++){
-					if ( _seq[i] > _seq[j] && i < j){
-						//optimize use search to find consequence of j index which lower than i index
-						// std::cout << "before _seq[i]: " << i << "," << _seq[i] << std::endl;
-						unsigned int l = i;
-						int num = _seq[i];
-						unsigned int k = this->findPositionInsert(num, j, nend);
-						// std::cout << "sort at index :" << k << std::endl;
-						while (i < k){
-							int tmp1 = _seq[i + 1];
-							_seq[i + 1] = num;
-							_seq[i] = tmp1;
-							i++;
-						}
-						i = l;
-						j--;
-						// std::cout << "after _seq[i]: " << i << "," << _seq[i] << std::endl;
-					}
-				}
-			}
-			// this->printSort(start, nend, YEL, GRN, "Partition\n");
-		}
-
-		void insertPartition(size_t start, size_t end){
-			typename T::iterator it1;
-			typename T::iterator it2;
-			unsigned int nend;
-			if (end == this->_seq.size())
-				nend = end;
-			else
-				nend = end + 1;
-			for (unsigned int i = start; i < (start + nend) / 2; i++){
-				it1 = std::upper_bound (_seq.begin() + ((start + nend) / 2), _seq.begin() + nend, _seq[i]);
-				// std::cout << _seq[i] << " should be at ";
-				// std::cout << *it1 << " at position " << it1 - _seq.begin() << std::endl;
-				// if (_seq[i] > _seq[i + 1] && i < ((start + nend) / 2) - 1){
-				// 	std::iter_swap(&_seq[i], &_seq[i + 1]);
-				// 	i = start;
-				// }
-				// for (unsigned int j = (start + nend) / 2; j < nend; j++){
-					//optimize use search to find consequence of j index which lower than i index
-					// if ( _seq[i] > _seq[j] && i < j){
-						// unsigned int l = i;
-						int num = _seq[i];
-						// std::cout << std::endl;
-						// unsigned int k = this->findPositionInsert(num, j, nend);
-					unsigned int k = it1 - _seq.begin();
-					// std::cout << "before _seq[i]: " << i << "," << _seq[i] << " and > " << k << std::endl;
-					if (k > 0 && i < k - 1){
-						k--;
-						// std::cout << "i : " << i << " k : " << k << std::endl;
-						if (_seq[i] > _seq[k]){
-							unsigned int l = 0;
-							if (i != start && i != ((start + nend) / 2) - 1)
-								l = i - 1;
-							else
-								l = i;
-							while (i < k){
-								int tmp1 = _seq[i + 1];
-								_seq[i + 1] = num;
-								_seq[i] = tmp1;
-								i++;
-							}
-							i = l;
-						}
-						// std::cout << "after _seq[i]: " << i << "," << _seq[i] << " and start at " << k << std::endl;
-						// std::cout << std::endl;
-					}
-					// while (_seq[i] <= _seq[i + 1] && i < ((start + nend) / 2) - 1)
-					// 	i++;
-					// this->printSort(start, nend, BLU, GRN, "insert Partition\n");
-						// j = (start + nend) / 2;
-						// j--;
-					// }
-				// }
 			}
 		}
 
@@ -227,18 +134,14 @@ class PmergeMe {
 		}
 
 		void mergeInsertionSort(int start, int end){
-			// std::cout << MAG << "container : ";
-			// for (unsigned int i = 0; i < _seq.size(); i++){
-			// 	std::cout << _seq[i] << " ";
-			// }
-			if ((start + end) / 2 > start && start != 1) {
-				// std::cout << WHT;
-				// std::cout << "start : " << start << " " << "end : " << end << std::endl;
+			if (start < end){
+				int mid = start + (end - start) / 2;
 				this->sortPairInput(start, end);
-				this->mergeInsertionSort(start, (start + end) / 2);
-				this->mergeInsertionSort((start + end) / 2, end);
-				this->partitionSwap(start, end);
-				this->insertPartition(start, end);
+				this->mergeInsertionSort(start, mid);
+				this->mergeInsertionSort(mid + 1, end);
+				this->insertPartition(start, mid);
+				this->insertPartition(mid + 1, end);
+				this->mergePartition(start, end);
 			}
 		}
 };
