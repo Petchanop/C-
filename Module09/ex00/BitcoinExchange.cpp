@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:23:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 18:20:55 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:29:46 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ bool BitcoinExchange::checkValidData(std::multimap<std::string,float> &container
 	std::string key;
 	std::string value;
 	size_t i;
+	int j = 0;
+	while (line[j] < 33 && line[j]){
+		j++;
+	}
+	if (!line[j] || line[j] == '\n')
+		return true;
 	for (i = 0; i < line.length(); i++){
 		if (line[i] == separator){
 			key = line.substr(0, i);
@@ -147,6 +153,12 @@ void BitcoinExchange::readDatabase(std::string data){
 }
 
 void BitcoinExchange::calculatePrice(std::string input){
+	int i = 0;
+	while (input[i] < 33 && input[i]){
+		i++;
+	}
+	if (!input[i] || input[i] == '\n')
+		return ;
 	std::stringstream ss(input);
     std::string word;
 	float quantity = 0.0;
