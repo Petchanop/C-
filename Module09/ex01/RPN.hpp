@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 21:28:21 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/26 00:37:25 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:56:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <stack>
+#include <cstdlib>
 
 class RPN {
 	private:

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:05:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 15:57:47 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:01:38 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,10 @@ class PmergeMe {
 		}
 
 		void sortPairInput(size_t start, size_t end){
-			typename T::iterator it2;
-			int nend;
-			if (end == this->_seq.size())
-				nend = end;
-			else
-				nend = end + 1;
+			unsigned int mid = start + (end - start) / 2;
 			if (start < end) {
-				typename T::iterator it2 = this->_seq.begin() + ((start + end) / 2);
-				for (typename T::iterator it1 = this->_seq.begin() + start; it1 != this->_seq.begin() + ((start + end) / 2); it1++){
+				typename T::iterator it2 = this->_seq.begin() + mid;
+				for (typename T::iterator it1 = this->_seq.begin() + start; it1 != this->_seq.begin() + mid; it1++){
 					if (*it1 > *it2){
 						std::iter_swap(it2, it1);
 					}

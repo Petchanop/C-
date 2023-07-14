@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:05:00 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 15:58:38 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:03:06 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
 				std::cout << bb.getSequence()[i] << " ";
 			}
 			std::cout << std::endl;
-			bb.mergeInsertionSort(0, bb.getSequence().size());
+			bb.mergeInsertionSort(0, bb.getSequence().size() - 1);
 			std::cout << MAG << "after : ";
 			for (unsigned int i = 0; i < bb.getSequence().size(); i++){
 				std::cout << bb.getSequence()[i] << " ";

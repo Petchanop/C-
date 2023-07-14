@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:20:41 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 18:03:26 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:50:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <fstream>
 #include <sstream>
 #include <exception>
+#include <cstdlib>
 
 class BitcoinExchange {
 	private:

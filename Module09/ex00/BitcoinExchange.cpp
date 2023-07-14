@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:23:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 18:29:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:55:01 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ BitcoinExchange::BitcoinExchange(){}
 BitcoinExchange::~BitcoinExchange(){}
 
 void BitcoinExchange::readInput(std::string filename){
-	std::ifstream file(filename);
+	std::ifstream file(filename.c_str());
 	std::string line;
 	int i = 0;
 
+	// file.open(filename);
 	if (file.is_open()){
 		while (getline(file, line))
 		{
@@ -137,7 +138,7 @@ bool BitcoinExchange::checkValidData(std::multimap<std::string,float> &container
 }
 
 void BitcoinExchange::readDatabase(std::string data){
-	std::ifstream file(data);
+	std::ifstream file(data.c_str());
 	std::string line;
 	int i = 0;
 

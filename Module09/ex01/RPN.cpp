@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 21:52:48 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/26 02:01:58 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:57:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ RPN::~RPN(){}
 
 void RPN::addStack(std::string num){
 	if (!num.empty()){
-		this->stack.push(std::stoi(num));
+		this->stack.push(atoi(num.c_str()));
 	}
 }
 

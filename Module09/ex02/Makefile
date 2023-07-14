@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 15:01:49 by npiya-is          #+#    #+#              #
-#    Updated: 2023/07/06 00:24:35 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/07/14 20:59:05 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ CXX=c++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++98 -fsanitize=address
 
 SRCS= main.cpp \
-	PmergeMe.cpp
 
 OBJS=$(SRCS:%.cpp=%.o)
 
