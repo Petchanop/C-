@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:23:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/25 15:25:21 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:20:55 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ BitcoinExchange::~BitcoinExchange(){}
 void BitcoinExchange::readInput(std::string filename){
 	std::ifstream file(filename);
 	std::string line;
+	int i = 0;
 
 	if (file.is_open()){
 		while (getline(file, line))
 		{
-			if (checkValidData(_inputData, line, '|'))
-				this->calculatePrice();
+			if (i != 0 && checkValidData(_inputData, line, '|')){
+				this->calculatePrice(line);
+			}
+			i++;
 		}
 		file.close();
 	}
@@ -53,16 +56,16 @@ static bool checkValidDate(std::string key){
 	if (!key.empty()){
 		for (unsigned int i = 0; i < key.length(); i++){
 			if (key[i] == '-' && !track){
-				Year = std::stoi(key.substr(0, i));
+				Year = std::atoi(key.substr(0, i).c_str());
 				if (i > 4 || i < 4)
 					return false;
-				Month = std::stoi(key.substr(i + 1));
+				Month = std::atoi(key.substr(i + 1).c_str());
 				if (Month < 1 || Month > 12)
 					return false;
 				track = true;
 			}
 			if (key[i] == '-' && track)
-				Day = std::stoi(key.substr(i + 1));
+				Day = std::atoi(key.substr(i + 1).c_str());
 		}
 		int dayInMonth = getDay(Year, Month);
 		if (Day > dayInMonth || Day < 0)
@@ -105,31 +108,24 @@ bool BitcoinExchange::checkValidData(std::multimap<std::string,float> &container
 	if (line[i] == '\0') {
 			key = line.substr(0, i);
 	}
-	try
-	{
-		std::string errorMsg;
-		if (!checkValidDate(key)) {
-			errorMsg = "Error: bad input => ";
-			errorMsg.append(key);
-			char * badinput = &errorMsg[0];
-			throw dataNotValidException(badinput);
-		}
-		else if (!checkValidPrice(value)) {
-			if (!isdigit(value[0]) && value[0] != '-')
-				return false;
-			else if (std::stof(value) < 0)
-				errorMsg = "Error: not a positive number.";
-			char *valueError = &errorMsg[0];
-			throw dataNotValidException(valueError);
-		}
-		else if (checkValidDate(key)){
-			container.insert(std::pair<std::string, float>(key, std::stof(value)));
-			return true;
-		}
+	std::string errorMsg;
+	if (!checkValidDate(key)) {
+		errorMsg = "Error: bad input => ";
+		errorMsg.append(key);
+		std::cout << errorMsg << std::endl;
 	}
-	catch(std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
+	else if (!checkValidPrice(value)) {
+		if (!isdigit(value[0]) && value[0] != '-'){
+			std::cout << "Error: input not a number.\n";
+			return false;
+		}
+		else if (std::atof(value.c_str()) < 0)
+			errorMsg = "Error: not a positive number.";
+		std::cout << errorMsg << std::endl;
+	}
+	else if (checkValidDate(key)){
+		container.insert(std::pair<std::string, float>(key, std::atof(value.c_str())));
+		return true;
 	}
 	return false;
 }
@@ -137,34 +133,37 @@ bool BitcoinExchange::checkValidData(std::multimap<std::string,float> &container
 void BitcoinExchange::readDatabase(std::string data){
 	std::ifstream file(data);
 	std::string line;
+	int i = 0;
 
 	if (file.is_open()){
 		while (getline(file, line))
 		{
-			checkValidData(_dataBase, line, ',');
+			if (i != 0)
+				checkValidData(_dataBase, line, ',');
+			i++;
 		}
 		file.close();
 	}
 }
 
-void BitcoinExchange::calculatePrice(){
-	std::multimap<std::string, float>::reverse_iterator input = _inputData.rbegin();
+void BitcoinExchange::calculatePrice(std::string input){
+	std::stringstream ss(input);
+    std::string word;
+	float quantity = 0.0;
+	getline(ss, word, '|');
+	ss >> quantity;
 	std::multimap<std::string, float>::iterator data,itlow;
-	itlow = _dataBase.lower_bound((*input).first);
+	itlow = _dataBase.lower_bound(word);
 	itlow--;
-	if (!_inputData.empty())
-	{
-		if ((*input).second > 1000){
-			std::cerr << "Error: too large a number.\n";
-			return ;
-		}
+	if (quantity > 1000){
+		std::cout << "Error: too large a number.\n";
+		return ;
 	}
-	for (data = _dataBase.begin(); data != _dataBase.end(); data++){
-		if ((*data).first.compare((*input).first) && itlow == data){
-			std::cout << (*input).first << "=> " << (*input).second << " = " << (*data).second * (*input).second << std::endl;
-			break;
-		}
+	if (std::atoi(word.c_str()) < 2009){
+		std::cout << word << "=> " << quantity << " = " << 0 * quantity << std::endl;
+		return ;
 	}
+	std::cout << word << "=> " << quantity << " = " << (*itlow).second * quantity << std::endl;
 }
 
 

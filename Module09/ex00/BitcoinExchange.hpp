@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:20:41 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/25 13:38:02 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:03:26 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <sstream>
 #include <exception>
 
 class BitcoinExchange {
@@ -27,17 +28,8 @@ class BitcoinExchange {
 		~BitcoinExchange();
 		void readInput(std::string filename);
 		void readDatabase(std::string data);
-		void calculatePrice();
+		void calculatePrice(std::string input);
 		bool checkValidData(std::multimap<std::string, float> &container, std::string line, char separator);
-		class dataNotValidException : public std::exception {
-			private:
-				char *message;
-			public:
-				dataNotValidException(char *msg):message(msg){};
-			virtual const char * what() const throw(){
-				return message;
-			}
-		};
 };
 
 #endif
