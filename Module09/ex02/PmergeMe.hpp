@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:05:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 21:01:38 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/16 20:14:44 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,21 @@ class PmergeMe {
 				this->insertPartition(mid + 1, end);
 				this->mergePartition(start, end);
 			}
+		}
+
+		void printProcessingTime(void (PmergeMe::*func)(int , int), PmergeMe &obj, std::string container, std::string color){
+			struct timeval	tvStart, tvStop;
+			gettimeofday(&tvStart, 0);
+			(obj.*func)(0, obj.getSequence().size() - 1);
+			gettimeofday(&tvStop, 0);
+			std::cout << color << "after sort : ";
+			for (unsigned int i = 0; i < obj.getSequence().size(); i++){
+				std::cout << obj.getSequence()[i] << " ";
+			}
+			std::cout << WHT << std::endl;
+			std::cout << "Time to process a range of ";
+			std::cout << this->getSequence().size() << " elements with " << container << " " << (tvStop.tv_sec - tvStart.tv_sec) * 1000000L + tvStop.tv_usec - tvStart.tv_usec;
+			std::cout << " us" << std::endl;
 		}
 };
 
