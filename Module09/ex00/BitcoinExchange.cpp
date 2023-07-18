@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:23:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/07/14 20:55:01 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/07/19 00:47:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,25 @@ static int getDay(int year, int month){
 	}
 }
 
+static bool isNumber(std::string str){
+	int i = 0;
+	if (str.length() > 8){
+		if (str[4] != '-' || str[7] != '-'){
+			return false;
+		}
+	}
+	while (str[i]){
+		if (!isdigit(str[i]) && i != 4 && i != 7)
+		{
+			if (i == int(str.length() - 1) && (str[str.length() - 1] == ' '))
+				break ;
+			return false;
+		}
+		i++;
+	}
+	return true;
+}
+
 static bool checkValidDate(std::string key){
 	int Year;
 	int Month;
@@ -55,18 +74,21 @@ static bool checkValidDate(std::string key){
 	bool track = false;
 
 	if (!key.empty()){
+		if (!isNumber(key))
+			return false;
 		for (unsigned int i = 0; i < key.length(); i++){
-			if (key[i] == '-' && !track){
+			if (key[i] == '-' && !track && i == 4){
 				Year = std::atoi(key.substr(0, i).c_str());
 				if (i > 4 || i < 4)
 					return false;
 				Month = std::atoi(key.substr(i + 1).c_str());
-				if (Month < 1 || Month > 12)
+				if (Month < 1 || Month > 12 )
 					return false;
 				track = true;
 			}
 			if (key[i] == '-' && track)
 				Day = std::atoi(key.substr(i + 1).c_str());
+
 		}
 		int dayInMonth = getDay(Year, Month);
 		if (Day > dayInMonth || Day < 0)
